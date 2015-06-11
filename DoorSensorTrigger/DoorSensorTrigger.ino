@@ -3,8 +3,10 @@
 #define ir A0
 #define model 20150
 
-boolean Open = true;
 int sensorValue = analogRead(A0);
+int switchPin = 2;              // switch is connected to pin 2
+int val;                        // variable for reading the pin status
+int buttonState;                // variable to hold the last button state
 
 SharpIR sharp(ir, 25, 93, model);
 
@@ -15,41 +17,27 @@ SharpIR sharp(ir, 25, 93, model);
 //                                            20150 for GP2Y0A02Y
 //                                            (working distance range according to the datasheets)
 
-boolean currentState = LOW;//stroage for current button state
-boolean lastState = LOW;//storage for last button state
 
-void setup(){
-  
+
+void setup()
+{
   Serial.begin(9600);
   pinMode (ir, INPUT);
-  delay(2000);
-  
+  delay(2000);  
 }
 
 
 
 
 
-void loop(){
-
+void loop()
+{
   delay(200);   
 
   int dis = sharp.distance();  // this returns the distance to the object you're measuring
-  
   Serial.print("Mean distance: ");  // returns it to the serial monitor
   Serial.println(dis);
   
- 
-  
-  currentState = Open;
-  if (currentState == true && lastState == false){//if button has just been pressed
-    Serial.println("open");
-    delay(1);//crude form of button debouncing
-  } else if(currentState == false && lastState == true){
-    Serial.println("closed");
-    delay(1);//crude form of button debouncing
-  }
-  lastState = currentState;
   
 }
   
