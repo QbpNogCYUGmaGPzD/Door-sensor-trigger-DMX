@@ -37,18 +37,30 @@ void loop()
   
   //Check when visitor passes the sensor
   // read the sensor and store it in the variable sensorReading:
-  sensorReading = analogRead(distanceSensor);    
+  sensorReading = Distance;    
   
   // if the sensor reading is greater than the threshold:
+  visitorEnter = false;
   if (sensorReading <= threshold) {
+    visitorEnter = true;
+     // send the string "Visitor!" back to the computer, followed by newline
+    Serial.println("Vistor!");
+  }
     
+  if (sensorReading <= threshold) {  
+    if (visitorEnter != false) {
+      visitorEnter = false;  
+      // send the string "Visitor!" back to the computer, followed by newline
+    Serial.println("Open!"); 
+    }
+  }
     
     
     
     // send the string "Visitor!" back to the computer, followed by newline
     Serial.println("Vistor!");         
   }
-}
+
 
 void PWM_Mode_Setup() {
   pinMode(URTRIG, OUTPUT);                           // A low pull on pin COMP/TRIG
