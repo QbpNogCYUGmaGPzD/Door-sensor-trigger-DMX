@@ -27,9 +27,6 @@ void setup()
 }
 
 
-
-
-
 void loop()
 {
   delay(200);   
@@ -37,7 +34,6 @@ void loop()
   int dis = sharp.distance();  // this returns the distance to the object you're measuring
   Serial.print("Mean distance: ");  // returns it to the serial monitor
   Serial.println(dis);
-  
   
 }
   
